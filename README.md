@@ -24,7 +24,7 @@ You can use the following keys to move cursor when a list of files is printed. N
 * Select: Return
 * Cancel: q, Escape
 
-## Usage Examples
+## Examples
 ```shell
 #Open a file using vim
 $ opn vim java
