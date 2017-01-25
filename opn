@@ -30,8 +30,8 @@ def terminal_size():
 
 def print_files(l, height, pos):
 	start = pos - int(height / 2);
-	start = max(0, start)
 	start = min(len(l) - height, start)
+	start = max(0, start)
 	end = start + min(len(l), height)
 
 	for i in range(start, end):
