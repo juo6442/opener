@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#Opener by juo v170115
 import os, sys
 import tty, termios
 import fcntl, struct
@@ -15,7 +14,7 @@ KEY_RETURN = "\x0D"
 def manual():
 	print("Usage: opn [command ...] [keyword]")
 	print("The last paramater will be used as [keyword] for subdirectory searching.")
-	print("[command] will be applied to the selected file.")
+	print("[command ...] will be applied to the selected file.")
 
 def search(keyword):
 	result = []
