@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#Opener by juo v160910
+#Opener by juo v170115
 import os, sys
 import tty, termios
 import fcntl, struct
@@ -13,7 +13,9 @@ KEY_ESC = "\x1B"
 KEY_RETURN = "\x0D"
 
 def manual():
-	print("Usage: opn [command] ... [keyword]")
+	print("Usage: opn [command ...] [keyword]")
+	print("The last paramater will be used as [keyword] for subdirectory searching.")
+	print("[command] will be applied to the selected file.")
 
 def search(keyword):
 	result = []
@@ -28,11 +30,12 @@ def terminal_size():
 	return (tw, th)
 
 def print_files(l, height, pos):
-	#print("Terminal size: " + str(terminal_size()[1]))
-	#TODO: 여러줄 프린트할 때 문제
+	start = pos - int(height / 2);
+	start = max(0, start)
+	start = min(len(l) - height, start)
+	end = start + min(len(l), height)
 
-	#for i in range(len(l)):
-	for i in range(0, min(len(l), terminal_size()[1] - 1)):
+	for i in range(start, end):
 		print(CLEAR_LINE, end = "")
 
 		if i == pos:
@@ -59,14 +62,15 @@ def get_key():
 def ui(l):
 	height = terminal_size()[1] - 1
 	pos = 0
+
 	while True:
 		print_files(l, height, pos)
 
 		k = get_key()
 		if   k == "k" or k == "\x1b[A": pos -= 1
 		elif k == "j" or k == "\x1b[B": pos += 1
-		elif k == "h" or k == "\x1b[D": pos = max(0, pos - height)
-		elif k == "l" or k == "\x1b[C": pos = min(len(l) - 1, pos + height)
+		elif k == "h" or k == "\x1b[D": pos = max(0, pos - int(height / 2))
+		elif k == "l" or k == "\x1b[C": pos = min(len(l) - 1, pos + int(height / 2))
 		elif k == "q" or k == KEY_ESC: break
 		elif k == KEY_RETURN:
 			run_command(l[pos])
@@ -89,10 +93,7 @@ try:
 	if len(result) <= 0:
 		exit()
 
-	if len(sys.argv) <= 2:
-		print_files(result, -1)
-	else:
-		ui(result)
+	ui(result)
 
 except (KeyboardInterrupt, SystemExit):
 	exit()
