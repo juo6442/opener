@@ -1,13 +1,10 @@
-# opn
-Find and open file in a bunch of directories.
+# opener
+Find and open a file in a bunch of directories.
 
 ## Installation
 ```shell
 #Copy script file into a directory you like
-$ cp ./opn ~/bin/opn
-
-#Add permission
-$ chmod +x ~/bin/opn
+$ cp ./opener ~/bin/opn
 
 #Add an environment variable if you didn't
 #ex. Add the following line to your .bash_profile
