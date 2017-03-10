@@ -15,7 +15,7 @@ $ PATH=$PATH:$HOME/bin
 ```
 opn [command ...] [keyword]
 ```
-You can use the following keys to move cursor when a list of files is printed. Not support arrow keys yet.
+You can use the following keys to move cursor when a list of files is printed. Arrow keys are not supported.
 * Move up: k, h
 * Move down: j, l
 * Select: Return
@@ -43,3 +43,7 @@ $ opn git add Mettaton
 ./ut/chara/Mettaton_ex.jpg
 ./ut/chara/Mettaton_neo.gif
 ```
+
+## TODO
+* Support arrow keys
+* Display issue when a line is wider than console width
