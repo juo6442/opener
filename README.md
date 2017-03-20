@@ -46,4 +46,3 @@ $ opn git add Mettaton
 
 ## TODO
 * Support arrow keys
-* Display issue when a line is wider than console width
