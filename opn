@@ -24,11 +24,11 @@ def search(keyword):
 
     return result
 
-def terminal_size():
+def get_terminal_size():
     th, tw, hp, wp = struct.unpack("HHHH", fcntl.ioctl(0, termios.TIOCGWINSZ, struct.pack("HHHH", 0, 0, 0, 0)))
     return (tw, th)
 
-def print_files(l, height, pos):
+def print_files(l, pos, width, height):
     start = pos - int(height / 2);
     start = min(len(l) - height, start)
     start = max(0, start)
@@ -40,7 +40,7 @@ def print_files(l, height, pos):
         if i == pos:
             print(COLOR_BLACK + COLOR_BG_CYAN, end = "")
 
-        print(l[i], end = "")
+        print(l[i][:width], end = "")
 
         if i == pos:
             print(COLOR_RESET, end = "")
@@ -59,11 +59,12 @@ def get_key():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
 def ui(l):
-    height = terminal_size()[1] - 1
+    width = get_terminal_size()[0]
+    height = get_terminal_size()[1] - 1  # Leave a line for cursor
     pos = 0
 
     while True:
-        print_files(l, height, pos)
+        print_files(l, pos, width, height)
 
         k = get_key()
         if   k == "k" or k == "\x1b[A": pos -= 1
@@ -82,6 +83,7 @@ def ui(l):
 def run_command(s):
     cmds = sys.argv[1:-1] + ["\"" + s + "\""]
     os.system(" ".join(cmds))
+
 
 try:
     if len(sys.argv) <= 1:
