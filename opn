@@ -13,7 +13,8 @@ KEY_RETURN = "\x0D"
 
 def manual():
     print("Usage: opn [command ...] [keyword]")
-    print("The last paramater will be used as [keyword] for subdirectory searching.")
+    print("The last paramater will be used as [keyword] " +
+          "for subdirectory searching.")
     print("[command ...] will be applied to the selected file.")
 
 def search(keyword):
@@ -25,7 +26,8 @@ def search(keyword):
     return result
 
 def get_terminal_size():
-    th, tw, hp, wp = struct.unpack("HHHH", fcntl.ioctl(0, termios.TIOCGWINSZ, struct.pack("HHHH", 0, 0, 0, 0)))
+    th, tw, hp, wp = struct.unpack("HHHH", fcntl.ioctl(
+            0, termios.TIOCGWINSZ, struct.pack("HHHH", 0, 0, 0, 0)))
     return (tw, th)
 
 def print_files(l, pos, width, height):
