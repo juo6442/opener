@@ -47,7 +47,6 @@ def print_files(l, pos, width, height):
 
         print("")
 
-#TODO: Handle arrow keys (len=3)
 def get_key():
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
@@ -67,10 +66,10 @@ def ui(l):
         print_files(l, pos, width, height)
 
         k = get_key()
-        if   k == "k" or k == "\x1b[A": pos -= 1
-        elif k == "j" or k == "\x1b[B": pos += 1
-        elif k == "h" or k == "\x1b[D": pos = max(0, pos - int(height / 2))
-        elif k == "l" or k == "\x1b[C": pos = min(len(l) - 1, pos + int(height / 2))
+        if   k == "k": pos -= 1
+        elif k == "j": pos += 1
+        elif k == "h": pos = max(0, pos - int(height / 2))
+        elif k == "l": pos = min(len(l) - 1, pos + int(height / 2))
         elif k == "q" or k == KEY_ESC: break
         elif k == KEY_RETURN:
             run_command(l[pos])

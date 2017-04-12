@@ -45,4 +45,4 @@ $ opn git add Mettaton
 ```
 
 ## TODO
-* Support arrow keys
+* Nope!
