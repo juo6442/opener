@@ -8,7 +8,7 @@ $ cp ./opener ~/bin/opn
 
 #Add an environment variable if you didn't
 #ex. Add the following line to your .bash_profile
-$ PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/bin
 ```
 
 ## Usage
