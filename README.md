@@ -4,7 +4,7 @@ Find and open a file in a bunch of directories.
 ## Installation
 ```shell
 #Copy script file into a directory you like
-$ cp ./opener ~/bin/opn
+$ cp ./opener/opn ~/bin/opn
 
 #Add an environment variable if you didn't
 #ex. Add the following line to your .bash_profile
